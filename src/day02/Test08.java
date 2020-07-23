@@ -1,4 +1,9 @@
 package day02;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
 /**
  * 要求用户输入若干员工信息，格式为：
  * name,age,gender,salary;name,age,gender,salary;....
@@ -10,5 +15,17 @@ package day02;
  *
  */
 public class Test08 {
-
+    public static void main(String[] args) {
+        Collection<Person> collection = new ArrayList<>();
+        collection.add(new Person("张三",25,"男",5000));
+        collection.add(new Person("李四",26,"女",6000));
+        collection.add(new Person("李四",26,"女",6000));
+        collection.add(new Person("李四",26,"女",6000));
+        collection.add(new Person("李四",26,"女",6000));
+        Iterator<Person> iterator=collection.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+    }
 }
+

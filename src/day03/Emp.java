@@ -28,7 +28,6 @@ public class Emp {
     private String gender;
     private int salary;
     private Date hiredate;
-
     SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override

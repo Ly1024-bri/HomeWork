@@ -1,0 +1,51 @@
+package day04;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+/**
+ * 要求用户输入若干员工信息，格式为：
+ * name,age,gender,salary,hiredate;name,age,gender,salary,hiredate;....
+ * 例如:
+ * 张三,25,男,5000,2006-02-15;李四,26,女,6000,2007-12-24;...
+ * 然后将每个员工信息解析成Emp对象。并存入到一个集合中。
+ * 然后循环集合，输出每一个员工信息(输出使用toString返回的字符串)
+ * 然后输出每个员工的转正仪式日期。
+ * 转正仪式日期为:入职3个月的当周周五
+ * 
+ * @author Bonnie
+ *
+ */
+public class Test09 {
+    public static void main(String[] args) throws ParseException {
+        SimpleDateFormat ss = new SimpleDateFormat("yyyy-MM-dd");
+        List<Emp> l = new ArrayList<>();
+        l.add(new Emp("张三",25,"男",5000,ss.parse("2006-02-15")));
+        l.add(new Emp("李四",26,"女",6000,ss.parse("2007-12-24")));
+        for (Emp e:l){
+            System.out.println(e);
+        }
+        Calendar c = Calendar.getInstance();
+        c.setTime(ss.parse("2006-02-15"));
+        c.add(Calendar.MONTH,3);
+        c.set(Calendar.DAY_OF_WEEK,Calendar.FRIDAY);
+        //StringBuilder节省空间
+        StringBuilder sb = new StringBuilder();
+        sb.append("张三的转正仪式日期为:");
+        sb.append(ss.format(c.getTime()));
+        System.out.println(sb);
+        //清空sb
+        sb.delete(0,sb.length());
+
+        c.setTime(ss.parse("2007-12-24"));
+        c.add(Calendar.MONTH,3);
+        c.set(Calendar.DAY_OF_WEEK,Calendar.FRIDAY);
+
+        sb.append("李四的转正仪式日期为:");
+        sb.append(ss.format(c.getTime()));
+
+        System.out.println(sb);
+
+    }
+}

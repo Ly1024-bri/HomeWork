@@ -10,7 +10,7 @@ package day01;
  */
 public class Test06 {
 	public static void main(String[] args) {
-		
+	//	parseInt();
 	}
 	public static int parseInt(String str){
 		// 最后要生成的数字
@@ -19,7 +19,6 @@ public class Test06 {
 		int flag = 0;
 		for (int i = 0; i < str.length(); i++) {
 			flag = (str.charAt(i) - 48);
-			Math.pow(i*10,2);
 			/*
 			 * 这里是将对应的数字计算为对应的位，例如百位数字就要用该数字乘以10的2次方
 			 * 得到

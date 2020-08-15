@@ -21,7 +21,7 @@ public class Test07 {
     public static void main(String[] args) {
         Emp e1 = new Emp("张三",25,"男",5000,new Date());
         Emp e2 = new Emp("李四",20,"女",6000,new Date());
-        Collection<Emp> c = new ArrayList<>(2);
+        Collection<Emp> c = new ArrayList<>();
 
         if (!c.contains(e1)){
             c.add(e1);

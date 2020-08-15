@@ -1,4 +1,9 @@
 package day06;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 /**
  * 编写一个程序，将当前目录下所有的员工文件进行读取，并解析出所有员工为Emp
  * 对象并存入Map。其中key为该员工的名字，value为该员工的emp对象。
@@ -12,5 +17,38 @@ package day06;
  *
  */
 public class Test12 {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        File f = new File("src/day06");
+        File[] files = f.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.getName().endsWith(".emp");
+            }
+        });
 
+        Map<String,Emp> list = new HashMap();
+
+        for (File f1:files){
+            ObjectInputStream fis = new ObjectInputStream(new FileInputStream(f1));
+
+            Emp e = (Emp) fis.readObject();
+            list.put(e.getName(),e);
+            fis.close();
+        }
+        Scanner scanner = new Scanner(System.in);
+        String s =  scanner.next();
+
+        Set<String> name = list.keySet();
+        for (String str:name){
+            if (s.equals(str)) {
+                Calendar c = Calendar.getInstance();
+
+                System.out.println(list.get(str));
+                c.setTime(list.get(str).getHiredate());
+                c.add(Calendar.YEAR, 20);
+                SimpleDateFormat ss = new SimpleDateFormat("yyyy-MM-dd");
+                System.out.println("20年纪念日:" + ss.format(c.getTime()));
+            }
+        }
+    }
 }

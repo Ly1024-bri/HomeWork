@@ -1,8 +1,12 @@
 package day06;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URISyntaxException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 将emp.dat文件中所有员工解析出来，并创建为若干Emp实例存入一个
@@ -22,9 +26,15 @@ import java.net.URISyntaxException;
  *
  */
 public class Test13 {
-	public static void main(String[] args) throws URISyntaxException, IOException {
+	public static void main(String[] args) throws URISyntaxException, IOException, ClassNotFoundException {
 		//使用类加载器加载当前包中的emp.dat文件
-		File file = new File(Test13.class.getClassLoader().getResource("day06/emp.dat").toURI());
-		
+		File file = new File(Test13.class.getClassLoader().getResource("src/day06/emp.dat").toURI());
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+		Emp e = (Emp) ois.readObject();
+		Set<Emp> set = new HashSet<>();
+		for (Emp emp:set){
+			set.add(emp);
+			System.out.println(e);
+		}
 	}
 }

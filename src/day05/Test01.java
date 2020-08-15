@@ -15,7 +15,7 @@ public class Test01 {
         Queue<Integer> qq = new LinkedList<>();
         Collections.addAll(qq,1,2,3,4,5);
         for (Integer i:qq) {
-            System.out.println(qq);
+            System.out.println(i);
         }
         QueueTest<Integer> q = new QueueTest<>();
         for (int i = 1; i < 6; i++) {

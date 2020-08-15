@@ -1,4 +1,4 @@
-package day06;
+package day08;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -14,37 +14,41 @@ import java.util.Objects;
  * Date hiredate;//入职时间
  * 
  * 定义构造方法，以及属性get,set方法.
+ * 
  * 定义toString方法，格式如:
  *    张三,25,男,5000,2006-02-15
  * 
- * 定义equals方法，要求名字相同，则认为内容一致。
+ * 定义equals方法，要求名字，年龄，性别，薪资都相同，则认为内容一致。
  * @author Bonnie
  *
  */
 public class Emp implements Serializable {
+    private static final  long  serialVersionUID = 2L;
     private String name;
     private int age;
     private String gender;
     private int salary;
-    private Date hiredate;
-
-    @Override
-    public String toString() {
-        SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd");
-        return  name +"," +age +"," + gender +"," + salary +","+ d.format(hiredate);
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Emp emp = (Emp) o;
-        return Objects.equals(name, emp.name);
+        return age == emp.age &&
+                salary == emp.salary &&
+                Objects.equals(name, emp.name) &&
+                Objects.equals(gender, emp.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, age, gender, salary);
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return  name +"," + age +","+ gender + ","+ salary +"," + sdf.format(hiredate);
     }
 
     public String getName() {
@@ -87,6 +91,9 @@ public class Emp implements Serializable {
         this.hiredate = hiredate;
     }
 
+    public Emp() {
+    }
+
     public Emp(String name, int age, String gender, int salary, Date hiredate) {
         this.name = name;
         this.age = age;
@@ -95,6 +102,5 @@ public class Emp implements Serializable {
         this.hiredate = hiredate;
     }
 
-    public Emp() {
-    }
+    private Date hiredate;
 }
